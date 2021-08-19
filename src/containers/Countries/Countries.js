@@ -1,15 +1,17 @@
 import axios from "axios";
 import React, {useEffect, useState} from 'react';
 
-import {All_COUNTRIES_URL} from "../../constants";
 import CountriesList from "../../components/CountryList/CountriesList";
-
 import './Countries.css';
+
+import {All_COUNTRIES_URL} from "../../constants";
+import {ONE_COUNTRY_URL} from "../../constants";
 
 const Countries = () => {
     const [countries, setCountries] = useState('');
     const [error, setError] = useState('');
     const [selectedCountry, setSelectedCountry] = useState('');
+    const [selectedCountryInfo, setSelectedCountryInfo] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -29,6 +31,19 @@ const Countries = () => {
         })();
     }, []);
 
+    useEffect(() => {
+        selectedCountry && (async () => {
+            try {
+                const result = await getCountryInfo(selectedCountry);
+
+                setSelectedCountryInfo(result);
+                setError('');
+            } catch (e) {
+                setError(e.toString());
+            }
+        })();
+    }, [selectedCountry]);
+
     const getCountries = async () => {
         const response = await axios.get(All_COUNTRIES_URL);
         return response.data;
@@ -36,6 +51,11 @@ const Countries = () => {
 
     const handleCountryClick = (id) => {
         setSelectedCountry(id);
+    };
+
+    const getCountryInfo = async (id) => {
+        const response = await axios.get(ONE_COUNTRY_URL + id );
+        return response.data;
     };
 
     return (
