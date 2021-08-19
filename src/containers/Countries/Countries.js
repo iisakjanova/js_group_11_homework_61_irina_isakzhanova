@@ -7,7 +7,7 @@ import CountriesList from "../../components/CountryList/CountriesList";
 import './Countries.css';
 
 const Countries = () => {
-    const [countries, setCountries] = useState({});
+    const [countries, setCountries] = useState('');
     const [error, setError] = useState('');
     const [selectedCountry, setSelectedCountry] = useState('');
 
@@ -24,7 +24,7 @@ const Countries = () => {
                 setCountries(countries);
                 setError('');
             } catch (e) {
-                setError('Something went wrong' + e.response.status);
+                setError(e.toString());
             }
         })();
     }, []);
@@ -39,14 +39,21 @@ const Countries = () => {
     };
 
     return (
-        <div className="Countries">
-            <CountriesList
-                countries={countries}
-                onClick={handleCountryClick}
-                selectedCountry={selectedCountry}
-            />
-
-        </div>
+        <>
+            {error ? <div className="Error">{error}</div> : null}
+            {countries
+                ?
+                <div className="Countries">
+                    <CountriesList
+                        countries={countries}
+                        onClick={handleCountryClick}
+                        selectedCountry={selectedCountry}
+                    />
+                </div>
+                :
+                null
+            }
+        </>
     );
 };
 

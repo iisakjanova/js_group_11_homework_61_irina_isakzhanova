@@ -5,3 +5,9 @@
 .CountriesList {
     width: 30%;
 }
+
+.Error {
+    padding: 10px;
+    background: red;
+    color: white;
+}

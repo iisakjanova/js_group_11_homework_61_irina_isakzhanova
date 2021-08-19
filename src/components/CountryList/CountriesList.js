@@ -1,6 +1,6 @@
 import React from 'react';
-import './CountriesList.css';
 import CountriesListItem from "../ContriesListItem/CountriesListItem";
+import './CountriesList.css';
 
 const CountriesList = ({countries, onClick, selectedCountry}) => {
     return (
