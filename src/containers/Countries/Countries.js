@@ -2,10 +2,14 @@ import axios from "axios";
 import React, {useEffect, useState} from 'react';
 
 import {All_COUNTRIES_URL} from "../../constants";
+import CountriesList from "../../components/CountryList/CountriesList";
+
+import './Countries.css';
 
 const Countries = () => {
     const [countries, setCountries] = useState({});
     const [error, setError] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -30,8 +34,17 @@ const Countries = () => {
         return response.data;
     };
 
+    const handleCountryClick = (id) => {
+        setSelectedCountry(id);
+    };
+
     return (
-        <div>
+        <div className="Countries">
+            <CountriesList
+                countries={countries}
+                onClick={handleCountryClick}
+                selectedCountry={selectedCountry}
+            />
 
         </div>
     );

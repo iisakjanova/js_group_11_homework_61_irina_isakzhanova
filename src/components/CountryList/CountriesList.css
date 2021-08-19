@@ -1,0 +1,16 @@
+.CountriesList {
+    list-style: none;
+    padding: 0;
+    border: 1px solid grey;
+}
+
+.ListItem {
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 10px;
+}
+
+.Checked {
+    background: bisque;
+    border: 1px solid grey;
+}
