@@ -1,7 +1,10 @@
 .CountriesList {
     list-style: none;
     padding: 0;
+    margin: 0;
     border: 1px solid grey;
+    height: 90vh;
+    overflow-y: scroll;
 }
 
 .ListItem {

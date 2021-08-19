@@ -6,6 +6,7 @@ import './Countries.css';
 
 import {All_COUNTRIES_URL} from "../../constants";
 import {ONE_COUNTRY_URL} from "../../constants";
+import CountryInfo from "../../components/CountryInfo/CountryInfo";
 
 const Countries = () => {
     const [countries, setCountries] = useState('');
@@ -68,6 +69,9 @@ const Countries = () => {
                         countries={countries}
                         onClick={handleCountryClick}
                         selectedCountry={selectedCountry}
+                    />
+                    <CountryInfo
+                        info={selectedCountryInfo}
                     />
                 </div>
                 :

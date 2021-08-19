@@ -1,0 +1,16 @@
+.CountryInfo {
+    display: flex;
+    flex-grow: 1;
+    border: 1px solid grey;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.Flag {
+    width: 200px;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: auto;
+}

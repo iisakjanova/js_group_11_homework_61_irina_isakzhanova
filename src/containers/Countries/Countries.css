@@ -1,5 +1,6 @@
 .Countries {
     padding: 20px;
+    display: flex;
 }
 
 .CountriesList {
