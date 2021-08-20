@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
+import Crypto from "../../components/Crypto/Crypto";
+import './Cryptocurrencies.css';
+
 import {ALL_COINS_URL} from "../../constants";
 
 const Cryptocurrencies = () => {
@@ -15,7 +18,9 @@ const Cryptocurrencies = () => {
                 let cryptoes = {};
 
                 cryptoesFromAPI.forEach(crypto => {
-                    cryptoes[crypto.symbol] = {symbol: crypto.symbol, name: crypto.name}
+                    cryptoes[crypto.symbol] = {
+                        symbol: crypto.symbol, name: crypto.name, price: crypto.price,
+                    }
                 });
 
                 setCryptoes(cryptoes);
@@ -32,8 +37,25 @@ const Cryptocurrencies = () => {
     };
 
     return (
-        <div>
-
+        <div className="CoinsWrapper">
+            {error ? <div className="Error">{error}</div> : null}
+            {cryptoes
+                ?
+                <div className="Coins">
+                    <h3>Top 5 cryptocurrencies prices:</h3>
+                    <ul>
+                        {Object.values(cryptoes).map(crypto => (
+                            <Crypto
+                                key={crypto.symbol}
+                                info={crypto}
+                            />
+                        ))}
+                    </ul>
+                    <p>Powered by <a href="https://coinlib.io/apidocs">Coinlib API</a></p>
+                </div>
+                :
+                null
+            }
         </div>
     );
 };

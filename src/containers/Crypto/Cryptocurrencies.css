@@ -1,0 +1,18 @@
+.CoinsWrapper {
+    background: grey;
+    padding: 20px;
+}
+
+.Coins {
+
+    width: 50%;
+    margin: 0 auto;
+}
+
+.Coins ul {
+    padding: 0;
+}
+
+.Coins h3 {
+    text-align: center;
+}
