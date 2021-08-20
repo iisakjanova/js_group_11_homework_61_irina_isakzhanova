@@ -1,9 +1,17 @@
 .CountryInfo {
-    display: flex;
     flex-grow: 1;
     border: 1px solid grey;
     margin-left: 20px;
     padding: 20px;
+    background: lightgray;
+}
+
+.CountryInfoInner {
+    display: flex;
+}
+
+.BordersInfo {
+    padding-top: 40px;
 }
 
 .Flag {
@@ -13,4 +21,9 @@
     background-repeat: no-repeat;
     background-size: contain;
     margin-left: auto;
+}
+
+.Instruction {
+    text-align: center;
+    color: red;
 }

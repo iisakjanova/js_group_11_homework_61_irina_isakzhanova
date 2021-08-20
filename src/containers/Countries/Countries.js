@@ -2,17 +2,18 @@ import axios from "axios";
 import React, {useEffect, useState} from 'react';
 
 import CountriesList from "../../components/CountryList/CountriesList";
+import CountryInfo from "../../components/CountryInfo/CountryInfo";
 import './Countries.css';
 
 import {All_COUNTRIES_URL} from "../../constants";
 import {ONE_COUNTRY_URL} from "../../constants";
-import CountryInfo from "../../components/CountryInfo/CountryInfo";
 
 const Countries = () => {
     const [countries, setCountries] = useState('');
     const [error, setError] = useState('');
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedCountryInfo, setSelectedCountryInfo] = useState('');
+    const [selectedCountryBorders, setSelectedCountryBorders] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -45,6 +46,28 @@ const Countries = () => {
         })();
     }, [selectedCountry]);
 
+    useEffect(() => {
+        selectedCountryInfo && (async () => {
+            try {
+                const responses = await Promise.all(
+                    selectedCountryInfo.borders.map(border => getCountryInfo(border))
+                );
+
+                const borders = responses.map(response => (
+                    {
+                        name: response.name,
+                        alpha3Code: response.alpha3Code
+                    }
+                ));
+
+                setSelectedCountryBorders(borders);
+                setError('');
+            } catch (e) {
+                setError(e.toString());
+            }
+        })();
+    }, [selectedCountryInfo]);
+
     const getCountries = async () => {
         const response = await axios.get(All_COUNTRIES_URL);
         return response.data;
@@ -72,6 +95,7 @@ const Countries = () => {
                     />
                     <CountryInfo
                         info={selectedCountryInfo}
+                        borders={selectedCountryBorders}
                     />
                 </div>
                 :
